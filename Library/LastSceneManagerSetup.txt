@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Scenes/SampleScene.unity
+- path: Assets/Sandboxes/Sandbox 1 - Player Controller/Scenes/S1 - Player Controller.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
