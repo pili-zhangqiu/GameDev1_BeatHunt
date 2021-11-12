@@ -30,6 +30,13 @@ public class PlayerController : MonoBehaviour
 	Quaternion fromRotation;                // Cube quaternion before rotation
 	Quaternion toRotation;                  // Cube quaternion after rotation or desired rotation
 
+	private float beatPositionNow;
+	private float beatRemainder;
+
+	private float beatThresholdDown;
+	private float beatThresholdUp;
+
+
 	// Use this for initialization
 	void Start()
 	{
@@ -38,20 +45,58 @@ public class PlayerController : MonoBehaviour
 		scale = transform.lossyScale;
 		//Debug.Log ("[x, y, z] = [" + scale.x + ", " + scale.y + ", " + scale.z + "]");
 
+		// Init beats
+		beatThresholdDown = 0.05f;
+		beatThresholdUp = 1 - beatThresholdDown;
 	}
 
 	// Update is called once per frame
 	void Update()
 	{
+		// -------------------------------------------------------- Beats
+		// Get current beat position
+		beatPositionNow = ConductorController.songPositionInBeats;
+		beatRemainder = beatPositionNow % 1;
+		Debug.Log("Current beat: " + beatPositionNow);
+		Debug.Log("Beat remainder: " + beatRemainder);
 
+		// ------------------------------------------------------- Movement 
+		float tryX = 0;
+		float tryY = 0; 
+		
 		float x = 0;
 		float y = 0;
 
 		// Identify keyboard keys pressed
-		x = Input.GetAxisRaw("Horizontal");
-		if (x == 0)
+		tryX = Input.GetAxisRaw("Horizontal");
+
+		if ((tryX != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
 		{
-			y = Input.GetAxisRaw("Vertical");
+			x = tryX;
+			Debug.Log("x " + x);
+			Debug.Log("-------------------------------- Beat Scored --------------------------------");
+		}
+
+		else if (tryX != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
+		{
+			Debug.Log("-------------------------------- Missed a beat --------------------------------");
+		}
+
+		if (tryX == 0)
+		{
+			tryY = Input.GetAxisRaw("Vertical");
+
+			if ((tryY != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
+			{
+				y = tryY;
+				Debug.Log("y " + y);
+				Debug.Log("-------------------------------- Beat Scored --------------------------------");
+			}
+
+			else if (tryY != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
+            {
+				Debug.Log("-------------------------------- Missed a beat --------------------------------");
+			}
 		}
 
 
@@ -169,7 +214,5 @@ public class PlayerController : MonoBehaviour
 				startAngleRad = Mathf.Atan2(scale.y, scale.z);
 			}
 		}
-		//Debug.Log (radius + ", " + startAngleRad);
 	}
-
 }

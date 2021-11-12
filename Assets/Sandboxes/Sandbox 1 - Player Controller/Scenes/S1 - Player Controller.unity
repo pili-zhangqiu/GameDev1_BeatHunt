@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34eb5ed202f43de47b7b739ef578d626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationPeriod: 0.3
+  rotationPeriod: 0.2
 --- !u!65 &288632638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -625,6 +625,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dspSongTime: 0
   musicSource: {fileID: 1727247547}
+  firstBeatOffset: 0.25
 --- !u!82 &1727247547
 AudioSource:
   m_ObjectHideFlags: 0

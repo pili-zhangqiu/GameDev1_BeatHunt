@@ -14,6 +14,9 @@ public class ConductorController : MonoBehaviour
 
     public AudioSource musicSource;     // An AudioSource attached to this GameObject that will play the music.
 
+    //The offset to the first beat of the song in seconds
+    public float firstBeatOffset = 0.25f;
+
     // ------------------------------- Start -------------------------------
     void Start()
     {
@@ -34,15 +37,15 @@ public class ConductorController : MonoBehaviour
     }
 
     // ------------------------------- Update -------------------------------
-    void Update()
+    void FixedUpdate()
     {
         //determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime);
-        Debug.Log("Song started: " + songPosition + " seconds ago");
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime + firstBeatOffset);
+        //Debug.Log("Song position: " + songPosition + " seconds");
 
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
-        Debug.Log("Song started: " + songPositionInBeats + " beats ago");
-        Debug.Log("--------------------------------------------");
+        //Debug.Log("Song position: " + songPositionInBeats + " beats");
+        //Debug.Log("--------------------------------------------");
     }
 }

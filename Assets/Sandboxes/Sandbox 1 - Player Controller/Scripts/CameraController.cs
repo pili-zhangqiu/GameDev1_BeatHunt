@@ -32,6 +32,7 @@ public class CameraController : MonoBehaviour
 
     public void Refresh()
     {
+        // Find whether a target is attached to the camera
         if (target == null)
         {
             Debug.Log("Missing target reference for camera!");
