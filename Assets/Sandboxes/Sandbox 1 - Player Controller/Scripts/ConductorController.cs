@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConductorController : MonoBehaviour
 {
-    private float songBpm;                     // Song beats per minute. This is determined by the song you're trying to sync up to
+    public float songBpm;                     // Song beats per minute. This is determined by the song you're trying to sync up to
     public static float secPerBeat;            // The number of seconds for each song beat
 
     public static float songPosition;          // Current song position, in seconds
@@ -21,7 +21,7 @@ public class ConductorController : MonoBehaviour
     void Start()
     {
         // Define the beats per minute of the audiosource
-        songBpm = 120;
+        songBpm = 160;
 
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();

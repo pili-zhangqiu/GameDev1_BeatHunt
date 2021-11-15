@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
 
 	private float beatPositionNow;
 	private float beatRemainder;
+	private int beatInt;
 
 	private float beatThresholdDown;
 	private float beatThresholdUp;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
 		//Debug.Log ("[x, y, z] = [" + scale.x + ", " + scale.y + ", " + scale.z + "]");
 
 		// Init beats
-		beatThresholdDown = 0.05f;
+		beatThresholdDown = 0.1f;
 		beatThresholdUp = 1 - beatThresholdDown;
 	}
 
@@ -60,6 +61,20 @@ public class PlayerController : MonoBehaviour
 		Debug.Log("Current beat: " + beatPositionNow);
 		Debug.Log("Beat remainder: " + beatRemainder);
 
+		beatInt = Mathf.FloorToInt(beatPositionNow);
+
+		if (beatInt % 2 == 0)
+        {
+			MagTilesController.magAlpha = 0f;
+			CyanTilesController.cyanAlpha = 0.25f;
+		}
+
+        else
+        {
+			CyanTilesController.cyanAlpha = 0f;
+			MagTilesController.magAlpha = 0.25f;
+		}
+
 		// ------------------------------------------------------- Movement 
 		float tryX = 0;
 		float tryY = 0; 
@@ -70,6 +85,7 @@ public class PlayerController : MonoBehaviour
 		// Identify keyboard keys pressed
 		tryX = Input.GetAxisRaw("Horizontal");
 
+		/*
 		if ((tryX != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
 		{
 			x = tryX;
@@ -81,6 +97,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("-------------------------------- Missed a beat --------------------------------");
 		}
+		
 
 		if (tryX == 0)
 		{
@@ -98,7 +115,36 @@ public class PlayerController : MonoBehaviour
 				Debug.Log("-------------------------------- Missed a beat --------------------------------");
 			}
 		}
+		*/
+		if ((tryX != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
+		{
+			x = tryX;
+			Debug.Log("x " + x);
+			Debug.Log("-------------------------------- Beat Scored --------------------------------");
+		}
 
+		else if (tryX != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
+		{
+			Debug.Log("-------------------------------- Missed a beat --------------------------------");
+		}
+
+
+		if (tryX == 0)
+		{
+			tryY = Input.GetAxisRaw("Vertical");
+
+			if ((tryY != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
+			{
+				y = tryY;
+				Debug.Log("y " + y);
+				Debug.Log("-------------------------------- Beat Scored --------------------------------");
+			}
+
+			else if (tryY != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
+			{
+				Debug.Log("-------------------------------- Missed a beat --------------------------------");
+			}
+		}
 
 		// If there is a key input and the Cube is not rotating, rotate the Cube
 		if ((x != 0 || y != 0) && !isRotate)
