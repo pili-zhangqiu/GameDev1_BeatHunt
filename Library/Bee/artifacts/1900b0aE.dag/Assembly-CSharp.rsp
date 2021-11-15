@@ -344,7 +344,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CameraController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/ConductorController.cs"
+"Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CyanTilesController.cs"
+"Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/DiagonalCameraController.cs"
+"Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/MagTilesController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/PlayerController.cs"
+"Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/TilesLitController.cs"
+"Assets/Sandboxes/Sandbox 4 - Enemies/Scripts/LaunchProjectiles.cs"
 -langversion:9.0
 
 /deterministic

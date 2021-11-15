@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Sandboxes/Sandbox 1 - Player Controller/Scenes/S1 - Player Controller.unity
+- path: Assets/Sandboxes/Sandbox 4 - Enemies/Scene/S4 - Fireball.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0

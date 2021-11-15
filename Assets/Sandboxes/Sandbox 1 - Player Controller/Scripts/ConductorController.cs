@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ConductorController : MonoBehaviour
 {
-    private float songBpm;                     // Song beats per minute. This is determined by the song you're trying to sync up to
+    public float songBpm;                     // Song beats per minute. This is determined by the song you're trying to sync up to
     public static float secPerBeat;            // The number of seconds for each song beat
 
     public static float songPosition;          // Current song position, in seconds
@@ -14,11 +14,14 @@ public class ConductorController : MonoBehaviour
 
     public AudioSource musicSource;     // An AudioSource attached to this GameObject that will play the music.
 
+    //The offset to the first beat of the song in seconds
+    public float firstBeatOffset = 0.25f;
+
     // ------------------------------- Start -------------------------------
     void Start()
     {
         // Define the beats per minute of the audiosource
-        songBpm = 120;
+        songBpm = 160;
 
         //Load the AudioSource attached to the Conductor GameObject
         musicSource = GetComponent<AudioSource>();
@@ -34,15 +37,15 @@ public class ConductorController : MonoBehaviour
     }
 
     // ------------------------------- Update -------------------------------
-    void Update()
+    void FixedUpdate()
     {
         //determine how many seconds since the song started
-        songPosition = (float)(AudioSettings.dspTime - dspSongTime);
-        Debug.Log("Song started: " + songPosition + " seconds ago");
+        songPosition = (float)(AudioSettings.dspTime - dspSongTime + firstBeatOffset);
+        //Debug.Log("Song position: " + songPosition + " seconds");
 
         //determine how many beats since the song started
         songPositionInBeats = songPosition / secPerBeat;
-        Debug.Log("Song started: " + songPositionInBeats + " beats ago");
-        Debug.Log("--------------------------------------------");
+        //Debug.Log("Song position: " + songPositionInBeats + " beats");
+        //Debug.Log("--------------------------------------------");
     }
 }
