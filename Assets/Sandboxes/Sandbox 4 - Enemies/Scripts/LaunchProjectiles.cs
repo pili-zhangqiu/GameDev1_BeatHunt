@@ -23,6 +23,9 @@ public class LaunchProjectiles : MonoBehaviour
 
 	float radius;
 	public bool fireBall = true;
+
+	public static List<GameObject> allTheProjectiles = new List<GameObject>();
+
 	private Vector3 offsetFromPlayer;
 
 	public AudioSource explosion;
@@ -123,6 +126,9 @@ public class LaunchProjectiles : MonoBehaviour
 			Vector3 projectileMoveDirection = (projectileVector - startPoint).normalized * moveSpeed;
 
 			var proj = Instantiate(projectile, startPoint, Quaternion.identity);
+			allTheProjectiles.Add(proj);
+			Debug.Log(allTheProjectiles);
+
 			proj.GetComponent<Rigidbody>().velocity =
 				new Vector3(projectileMoveDirection.x, projectileMoveDirection.y, projectileMoveDirection.z);
 

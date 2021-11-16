@@ -9,6 +9,7 @@ public class GameEventsController : MonoBehaviour
     [SerializeField]
     GameObject fireBallPrefab;
 
+    /*
     [SerializeField]
     public GameObject clone1;
 
@@ -26,6 +27,7 @@ public class GameEventsController : MonoBehaviour
 
     [SerializeField]
     public GameObject clone6;
+    */
 
 
     // Update is called once per frame
@@ -35,45 +37,54 @@ public class GameEventsController : MonoBehaviour
 
         if (intCurrBeat <= 30f )
         {
+            // -------------------- Wave 1 ----------------------
             if (intCurrBeat == 5)
             {
                 //GameObject clone1 = Instantiate(fireBallPrefab) as GameObject;
-                clone1.SetActive(true);
+                fireBallPrefab.SetActive(true);
             }
 
+            if (intCurrBeat == 12)
+            {
+                //GameObject clone1 = Instantiate(fireBallPrefab) as GameObject;
+                fireBallPrefab.SetActive(false);
+                DestroyInstances(LaunchProjectiles.allTheProjectiles);
+            }
+            /*
+            // -------------------- Wave 2 ----------------------
             else if (intCurrBeat == 10)
             {
                 //GameObject clone2 = Instantiate(fireBallPrefab) as GameObject;
-                clone2.SetActive(true);
+                //fireBallPrefab.SetActive(false);
+                fireBallPrefab.SetActive(true);
             }
 
-            /*
             else if (intCurrBeat == 15)
             {
                 //GameObject clone3 = Instantiate(fireBallPrefab) as GameObject;
-                clone3.SetActive(true);
-                clone1.SetActive(false);
+                fireBallPrefab.SetActive(false);
+                fireBallPrefab.SetActive(true);
             }
 
             if (intCurrBeat == 20)
             {
                 //GameObject clone4 = Instantiate(fireBallPrefab) as GameObject;
-                clone4.SetActive(true);
-                clone2.SetActive(false);
+                fireBallPrefab.SetActive(false);
+                fireBallPrefab.SetActive(true);
             }
 
             else if (intCurrBeat == 25)
             {
                 //GameObject clone5 = Instantiate(fireBallPrefab) as GameObject;
-                clone5.SetActive(true);
-                clone3.SetActive(false);
+                fireBallPrefab.SetActive(false);
+                fireBallPrefab.SetActive(true);
             }
 
             else if (intCurrBeat == 30)
             {
                 //GameObject clone6 = Instantiate(fireBallPrefab) as GameObject;
-                clone6.SetActive(true);
-                clone4.SetActive(false);
+                fireBallPrefab.SetActive(false);
+                fireBallPrefab.SetActive(true);
             }
             */
         }
@@ -106,5 +117,14 @@ public class GameEventsController : MonoBehaviour
             }
         }
         */
+    }
+
+    private void DestroyInstances(List<GameObject> instanceList)
+    {
+        for (int i = 0; i < instanceList.Count; i++)
+        {
+            Destroy(instanceList[i]);
+        }
+        instanceList.Clear();
     }
 }

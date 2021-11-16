@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
 	private float beatThresholdDown;
 	private float beatThresholdUp;
 
-	public AudioSource audioSource;
+	public AudioSource damageAudio;
 
 
 	// Use this for initialization
@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
 		// -------------- Hit by log --------------
 		if (collision.gameObject.name == "Fireball(Clone)")
 		{
-			audioSource.Play();
+			damageAudio.Play();
 			Debug.Log("---------- Hit by fireball! ----------");
 		}
 	}
