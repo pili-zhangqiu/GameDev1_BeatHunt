@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
 	private float beatThresholdDown;
 	private float beatThresholdUp;
 
+	public AudioSource audioSource;
+
 
 	// Use this for initialization
 	void Start()
@@ -51,15 +53,25 @@ public class PlayerController : MonoBehaviour
 		beatThresholdUp = 1 - beatThresholdDown;
 	}
 
-	// Update is called once per frame
+	void OnTriggerEnter(Collider collision)
+	{
+		// -------------- Hit by log --------------
+		if (collision.gameObject.name == "Fireball(Clone)")
+		{
+			audioSource.Play();
+			Debug.Log("---------- Hit by fireball! ----------");
+		}
+	}
+
+	// About movement
 	void Update()
 	{
 		// -------------------------------------------------------- Beats
 		// Get current beat position
 		beatPositionNow = ConductorController.songPositionInBeats;
 		beatRemainder = beatPositionNow % 1;
-		Debug.Log("Current beat: " + beatPositionNow);
-		Debug.Log("Beat remainder: " + beatRemainder);
+		//Debug.Log("Current beat: " + beatPositionNow);
+		//Debug.Log("Beat remainder: " + beatRemainder);
 
 		beatInt = Mathf.FloorToInt(beatPositionNow);
 
@@ -119,13 +131,7 @@ public class PlayerController : MonoBehaviour
 		if ((tryX != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
 		{
 			x = tryX;
-			Debug.Log("x " + x);
-			Debug.Log("-------------------------------- Beat Scored --------------------------------");
-		}
-
-		else if (tryX != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
-		{
-			Debug.Log("-------------------------------- Missed a beat --------------------------------");
+			//Debug.Log("x " + x);
 		}
 
 
@@ -136,13 +142,7 @@ public class PlayerController : MonoBehaviour
 			if ((tryY != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
 			{
 				y = tryY;
-				Debug.Log("y " + y);
-				Debug.Log("-------------------------------- Beat Scored --------------------------------");
-			}
-
-			else if (tryY != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
-			{
-				Debug.Log("-------------------------------- Missed a beat --------------------------------");
+				//Debug.Log("y " + y);
 			}
 		}
 
