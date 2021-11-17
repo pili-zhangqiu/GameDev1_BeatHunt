@@ -1277,7 +1277,7 @@ GameObject:
   - component: {fileID: 700412970}
   - component: {fileID: 700412975}
   m_Layer: 0
-  m_Name: BallBouncer (1)
+  m_Name: BallBouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2682,7 +2682,7 @@ GameObject:
   - component: {fileID: 1506463571}
   - component: {fileID: 1506463576}
   m_Layer: 0
-  m_Name: BallBouncer (2)
+  m_Name: BallBouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2826,7 +2826,7 @@ GameObject:
   - component: {fileID: 1512676956}
   - component: {fileID: 1512676961}
   m_Layer: 0
-  m_Name: BallBouncer (3)
+  m_Name: BallBouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

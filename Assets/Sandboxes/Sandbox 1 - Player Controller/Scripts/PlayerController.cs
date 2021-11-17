@@ -60,11 +60,11 @@ public class PlayerController : MonoBehaviour
 	void OnTriggerEnter(Collider collision)
 	{
 		// -------------- Hit by log --------------
-		if (collision.gameObject.name == "Obstacle")
+		if (collision.gameObject.name == "BallBouncer")
 		{
 			playerHealth = playerHealth - 1;
 			damageAudio.Play();
-			Debug.Log("---------- Hit by fireball! ----------");
+			Debug.Log("---------- Hit by ball! ----------");
 		}
 	}
 
