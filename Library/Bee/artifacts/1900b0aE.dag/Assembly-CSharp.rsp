@@ -344,6 +344,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/BallBouncer.cs"
 "Assets/GameEventsController.cs"
+"Assets/HealthController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CameraController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/ConductorController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CyanTilesController.cs"

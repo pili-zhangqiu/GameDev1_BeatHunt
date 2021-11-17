@@ -30,6 +30,8 @@ public class PlayerController : MonoBehaviour
 	Quaternion fromRotation;                // Cube quaternion before rotation
 	Quaternion toRotation;                  // Cube quaternion after rotation or desired rotation
 
+	public static int playerHealth;
+
 	private float beatPositionNow;
 	private float beatRemainder;
 	private int beatInt;
@@ -51,13 +53,16 @@ public class PlayerController : MonoBehaviour
 		// Init beats
 		beatThresholdDown = 0.1f;
 		beatThresholdUp = 1 - beatThresholdDown;
+
+		playerHealth = 3;
 	}
 
 	void OnTriggerEnter(Collider collision)
 	{
 		// -------------- Hit by log --------------
-		if (collision.gameObject.name == "Fireball(Clone)")
+		if (collision.gameObject.name == "Obstacle")
 		{
+			playerHealth = playerHealth - 1;
 			damageAudio.Play();
 			Debug.Log("---------- Hit by fireball! ----------");
 		}
