@@ -345,6 +345,7 @@
 "Assets/BallBouncer.cs"
 "Assets/GameEventsController.cs"
 "Assets/HealthController.cs"
+"Assets/RayEnemyController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CameraController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/ConductorController.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CyanTilesController.cs"
