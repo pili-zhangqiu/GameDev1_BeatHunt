@@ -45,26 +45,28 @@ public class PlayerController : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
+		// Make framerate faster to avoid missing beat presses
+		Application.targetFrameRate = 100;
+
+		// Init beats
+		beatThresholdDown = 0.25f;
+		beatThresholdUp = 1 - beatThresholdDown;
 
 		// Get the size of a cube or parallelepiped
 		scale = transform.lossyScale;
-		//Debug.Log ("[x, y, z] = [" + scale.x + ", " + scale.y + ", " + scale.z + "]");
 
-		// Init beats
-		beatThresholdDown = 0.1f;
-		beatThresholdUp = 1 - beatThresholdDown;
-
+		// Start player health at 3
 		playerHealth = 3;
 	}
 
 	void OnTriggerEnter(Collider collision)
 	{
 		// -------------- Hit by log --------------
-		if (collision.gameObject.name == "BallBouncer")
+		if (collision.gameObject.name == "BallBouncer" || collision.gameObject.name == "RayRow_Enemy")
 		{
 			playerHealth = playerHealth - 1;
 			damageAudio.Play();
-			Debug.Log("---------- Hit by ball! ----------");
+			Debug.Log("---------- Hit by enemy! ----------");
 		}
 	}
 
