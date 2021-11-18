@@ -343,10 +343,12 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEditor.UI.ref.dll"
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/AudioOnCollision.cs"
+"Assets/CongratsScreenController.cs"
 "Assets/EnemyWaves.cs"
 "Assets/GameEventsController.cs"
+"Assets/GameOverController.cs"
 "Assets/HeartCollectController.cs"
-"Assets/MenuController.cs"
+"Assets/InstructionController.cs"
 "Assets/Packages/Beautiful Progress Bar Free - CYKO/Scripts/SliderScripts.cs"
 "Assets/Packages/ProgressBars - PiliZQ/ProgressBarLinear.cs"
 "Assets/Sandboxes/Sandbox 1 - Player Controller/Scripts/CameraController.cs"
@@ -367,6 +369,8 @@
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/SceneRestart.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/SetVolume.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/UIManager.cs"
+"Assets/SceneController.cs"
+"Assets/TitleScreenController.cs"
 -langversion:9.0
 
 /deterministic

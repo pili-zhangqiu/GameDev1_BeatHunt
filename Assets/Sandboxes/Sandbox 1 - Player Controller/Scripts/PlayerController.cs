@@ -86,6 +86,17 @@ public class PlayerController : MonoBehaviour
 	// About movement
 	void Update()
 	{
+		// ------------------------------------------------------- Health 
+		if (heartCollected == true)
+		{
+			if (playerHealth < 3)
+			{
+				playerHealth = playerHealth + 1;
+			}
+
+			heartCollected = false;
+		}
+
 		// -------------------------------------------------------- Beats
 		// Get current beat position
 		beatPositionNow = ConductorController.songPositionInBeats;
@@ -149,15 +160,6 @@ public class PlayerController : MonoBehaviour
 			setRadius();                                                                // Calculate the radius of rotation
 			rotationTime = 0;                                                           // Set the elapsed time during rotation to 0
 			isRotate = true;                                                            // Set the rotating flag
-		}
-
-		if(heartCollected == true)
-        {
-			if (playerHealth < 3)
-            {
-				playerHealth = playerHealth + 1;
-				heartCollected = false;
-			}
 		}
 
 	}
