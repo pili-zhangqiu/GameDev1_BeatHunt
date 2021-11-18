@@ -21,6 +21,11 @@ public class BallBouncer : MonoBehaviour
     private void Update()
     {
         lastFrameVelocity = rb.velocity;
+
+        if (rb.velocity.magnitude < 0.5f)
+        {
+            rb.velocity = initialVelocity;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

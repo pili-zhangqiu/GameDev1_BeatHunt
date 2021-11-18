@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
 	Quaternion toRotation;                  // Cube quaternion after rotation or desired rotation
 
 	public static int playerHealth;
+	public static bool heartCollected = false;
 
 	private float beatPositionNow;
 	private float beatRemainder;
@@ -40,6 +41,10 @@ public class PlayerController : MonoBehaviour
 	private float beatThresholdUp;
 
 	public AudioSource damageAudio;
+
+	private float clipMovX;
+	private float clipMovZ;
+	private float clipMovZ_right;
 
 
 	// Use this for initialization
@@ -57,6 +62,10 @@ public class PlayerController : MonoBehaviour
 
 		// Start player health at 3
 		playerHealth = 3;
+
+		// Clip the movement of the player within the map
+		clipMovX = 1.135f * 17;
+		clipMovZ = 1.1325f * 14 + 0.548f;
 	}
 
 	void OnTriggerEnter(Collider collision)
@@ -104,37 +113,7 @@ public class PlayerController : MonoBehaviour
 		// Identify keyboard keys pressed
 		tryX = Input.GetAxisRaw("Horizontal");
 
-		/*
-		if ((tryX != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
-		{
-			x = tryX;
-			Debug.Log("x " + x);
-			Debug.Log("-------------------------------- Beat Scored --------------------------------");
-		}
 
-		else if (tryX != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
-		{
-			Debug.Log("-------------------------------- Missed a beat --------------------------------");
-		}
-		
-
-		if (tryX == 0)
-		{
-			tryY = Input.GetAxisRaw("Vertical");
-
-			if ((tryY != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
-			{
-				y = tryY;
-				Debug.Log("y " + y);
-				Debug.Log("-------------------------------- Beat Scored --------------------------------");
-			}
-
-			else if (tryY != 0 && beatRemainder > beatThresholdDown && beatRemainder < beatThresholdUp)
-            {
-				Debug.Log("-------------------------------- Missed a beat --------------------------------");
-			}
-		}
-		*/
 		if ((tryX != 0 && beatRemainder <= beatThresholdDown) || (tryX != 0 && beatRemainder >= beatThresholdUp))
 		{
 			x = tryX;
@@ -167,6 +146,16 @@ public class PlayerController : MonoBehaviour
 			rotationTime = 0;                                                           // Set the elapsed time during rotation to 0
 			isRotate = true;                                                            // Set the rotating flag
 		}
+
+		if(heartCollected == true)
+        {
+			if (playerHealth < 3)
+            {
+				playerHealth = playerHealth + 1;
+				heartCollected = false;
+			}
+		}
+
 	}
 
 	void FixedUpdate()
@@ -183,7 +172,9 @@ public class PlayerController : MonoBehaviour
 			float distanceX = -directionX * radius * (Mathf.Cos(startAngleRad) - Mathf.Cos(startAngleRad + thetaRad));      // X-axis travel distance. The minus sign (-) is to match the direction of movement with the key.
 			float distanceY = radius * (Mathf.Sin(startAngleRad + thetaRad) - Mathf.Sin(startAngleRad));                        // Y-axis travel distance
 			float distanceZ = directionZ * radius * (Mathf.Cos(startAngleRad) - Mathf.Cos(startAngleRad + thetaRad));           // Z-axis travel distance
-			transform.position = new Vector3(startPos.x + distanceX, startPos.y + distanceY, startPos.z + distanceZ);           // Set current position
+			
+			//transform.position = new Vector3(startPos.x + distanceX, startPos.y + distanceY, startPos.z + distanceZ);           // Set current position
+			transform.position = new Vector3(Mathf.Clamp(startPos.x + distanceX, -clipMovX, clipMovX), startPos.y + distanceY, Mathf.Clamp(startPos.z + distanceZ, -clipMovZ, clipMovZ));           // Set current position
 
 			// Rotate
 			transform.rotation = Quaternion.Lerp(fromRotation, toRotation, ratio);      // Set the current angle of rotation with Quaternion.Lerp

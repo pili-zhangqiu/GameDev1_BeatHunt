@@ -68,7 +68,7 @@ public class EnemyWaves : MonoBehaviour
     public void SpawnBouncyBall()
     {
         // Instantiate bouncySpawnee gameobject
-        Vector3 spawnStartPos = new Vector3(Random.Range(-9.5f, 23f), 1, Random.Range(-13.5f, 13.5f));
+        Vector3 spawnStartPos = new Vector3(Random.Range(-9f, 21f), 1, Random.Range(-13f, 13f));
         
 
         Instantiate(bouncySpawnee, spawnStartPos, Quaternion.identity);

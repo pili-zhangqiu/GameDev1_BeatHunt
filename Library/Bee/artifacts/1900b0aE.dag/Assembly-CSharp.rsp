@@ -345,6 +345,7 @@
 "Assets/AudioOnCollision.cs"
 "Assets/EnemyWaves.cs"
 "Assets/GameEventsController.cs"
+"Assets/HeartCollectController.cs"
 "Assets/MenuController.cs"
 "Assets/Packages/Beautiful Progress Bar Free - CYKO/Scripts/SliderScripts.cs"
 "Assets/Packages/ProgressBars - PiliZQ/ProgressBarLinear.cs"
@@ -362,6 +363,8 @@
 "Assets/Sandboxes/Sandbox 4 - Enemies/Scripts/RowRayEnemyController.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/CountdownTimer.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/HealthController.cs"
+"Assets/Sandboxes/Sandbox 5 - UI/Scripts/SceneControl.cs"
+"Assets/Sandboxes/Sandbox 5 - UI/Scripts/SceneRestart.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/UIManager.cs"
 -langversion:9.0
 
