@@ -365,6 +365,7 @@
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/HealthController.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/SceneControl.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/SceneRestart.cs"
+"Assets/Sandboxes/Sandbox 5 - UI/Scripts/SetVolume.cs"
 "Assets/Sandboxes/Sandbox 5 - UI/Scripts/UIManager.cs"
 -langversion:9.0
 

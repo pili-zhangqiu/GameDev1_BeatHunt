@@ -9,7 +9,7 @@ public class HeartCollectController : MonoBehaviour
 	void Start()
 	{
 		// Ray GameObject and warning out of scene
-		Vector3 startHeartPos = new Vector3(Random.Range(-16.5f, 16.5f), 0, Random.Range(-19f, 19f));
+		Vector3 startHeartPos = new Vector3(Random.Range(-16.5f, 16.5f), 0, Random.Range(-14f, 14f));
 		gameObject.transform.position = startHeartPos;
 	}
 
@@ -23,7 +23,7 @@ public class HeartCollectController : MonoBehaviour
 			Debug.Log("---------- One life collected! ----------");
 
 			// Find new place to move
-			Vector3 nextHeartPos = new Vector3(Random.Range(-16.5f, 16.5f), 0, Random.Range(-19f, 19f));
+			Vector3 nextHeartPos = new Vector3(Random.Range(-16.5f, 16.5f), 0, Random.Range(-14f, 14f));
 			gameObject.transform.position = nextHeartPos;
 		}
 	}

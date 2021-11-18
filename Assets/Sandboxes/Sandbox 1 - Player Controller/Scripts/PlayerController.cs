@@ -16,7 +16,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-	public float rotationPeriod = 0.3f;     // Time it takes to move
+	public float rotationPeriod = 0.25f;     // Time it takes to move
 	Vector3 scale;                          // The size of the cube or parallelepiped
 
 	bool isRotate = false;                  // Flag to detect if the Cube is spinning
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
 		Application.targetFrameRate = 100;
 
 		// Init beats
-		beatThresholdDown = 0.25f;
+		beatThresholdDown = 0.15f; //0.25f;
 		beatThresholdUp = 1 - beatThresholdDown;
 
 		// Get the size of a cube or parallelepiped
@@ -73,7 +73,11 @@ public class PlayerController : MonoBehaviour
 		// -------------- Hit by log --------------
 		if (collision.gameObject.name == "BallBouncer(Clone)" || collision.gameObject.name == "RayRow_Enemy")
 		{
-			playerHealth = playerHealth - 1;
+			if (playerHealth > 0)
+            {
+				playerHealth = playerHealth - 1;
+			}
+
 			damageAudio.Play();
 			Debug.Log("---------- Hit by enemy! ----------");
 		}

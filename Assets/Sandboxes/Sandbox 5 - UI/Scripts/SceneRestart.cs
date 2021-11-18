@@ -5,20 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class SceneRestart : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.R))
+        {
+            LoadCurrentScene();
+        }
     }
 
-    public void RestartGame()
+    public void LoadCurrentScene()
     {
-        SceneManager.LoadScene("MainGame");
+        Debug.Log("Hello I am the reloaded scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
