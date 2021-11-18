@@ -7,81 +7,104 @@ public class RayEnemyController : MonoBehaviour
 {
     [SerializeField]
     GameObject rayRowEnemy;
+    Rigidbody rayRowObjEnemy;
 
     [SerializeField]
     Image rayRowEnemyWarning;
 
-    int intCurrBeat;
+    // Color parameters for image alpha modifications
+    private Color imgColor;
 
-    Rigidbody rayRowObjEnemy;
-
-    private Color fullColor;
-    private Color transColor;
-
+    // Parameters for randomisation of row ray swipers location in map
     private Vector3 rayRowStartPos = new Vector3(0, 0, 0);
     private Vector3 rayRowWarnStartPos = new Vector3(0, 1, 0);
 
     private Vector3 rayRowOutPos = new Vector3(0, 0, 120f);
     private Vector3 rayRowWarnOutPos = new Vector3(0, 150f, 0);
 
-    public static int waveEnemy = 1;
     private int rayAttackRowLoc;    // From -17 to 17
+    public float rowPosMov = 1.135f;
 
-    public float rowPosMov = 1.13f;
+    // Beat position memory
+    int intPrevBeat;
+    int intCurrBeat;
 
-    private int intPrevBeat;
+    // Ray spawning rate - for enemy wave tweaks
+    public  int spawnBeatDelay;
+    private bool calcNewLoc = true;
 
 
     void Start()
     {
-        
-        // Setup image alphas
-        fullColor = rayRowEnemyWarning.color;
-        fullColor.a = 0.5f;
-        rayRowEnemyWarning.color = fullColor;
-        /*
-        transColor = fullColor;
-        transColor.a = 0f;
-        */
+        // Setup image properties (RGB and alphas)
+        imgColor = rayRowEnemyWarning.color;
+
+        // Get Ray GameObject rigidbody
         rayRowObjEnemy = rayRowEnemy.GetComponent<Rigidbody>();
 
-        // Ray GameObject out of scene
+        // Ray GameObject and warning out of scene
         rayRowObjEnemy.transform.position = rayRowOutPos;
-
-        // Ray GameObject out of scene
-        // rayRowEnemyWarning.color = transColor;
         rayRowEnemyWarning.transform.position = rayRowWarnOutPos;
 
+        // Start beat parameters
         intPrevBeat = 0;
-
-
     }
 
     void Update()
     {
         intCurrBeat = Mathf.FloorToInt(ConductorController.songPositionInBeats);
+        bool stopRayEnemy = EnemyWaves.stopSpawningRowRay;
 
-        // -------------------- Wave 1 ----------------------
-        if (waveEnemy == 1)
+        if (stopRayEnemy == false)
         {
-            if (intCurrBeat % 2 == 0 & intCurrBeat != intPrevBeat)
+            // -------------------- Wave Parameter Tweaker ----------------------
+            // Entering warning before triggering attack
+            if (intCurrBeat % spawnBeatDelay != 0 & intCurrBeat != intPrevBeat)
             {
-                // Previous ray object out
-                rayRowObjEnemy.transform.position = rayRowOutPos;
+                if (calcNewLoc == true)
+                {
+                    // Previous ray object out
+                    rayRowObjEnemy.transform.position = rayRowOutPos;
 
-                // Next ray warning in
-                rayAttackRowLoc = Random.Range(-17, 17);
-                //rayAttackRowLoc = -17;
-                Debug.Log("Random row: " + rayAttackRowLoc);
+                    // Next ray warning in
+                    rayAttackRowLoc = Random.Range(-17, 17);
+                    Debug.Log("Random row: " + rayAttackRowLoc);
 
-                Vector3 offsetRayWarnRow = new Vector3((rowPosMov * rayAttackRowLoc),0, 0);
-                //rayRowEnemyWarning.transform.position = rayRowWarnStartPos + offsetRayWarnRow;
-                float offsetX = rowPosMov * rayAttackRowLoc;
-                Debug.Log(" ---> Offset for Random row: " + offsetX);
-                rayRowEnemyWarning.transform.position = new Vector3(offsetX, 1, 0);
+                    Vector3 offsetRayWarnRow = new Vector3((rowPosMov * rayAttackRowLoc), 0, 0);
+                    rayRowEnemyWarning.transform.position = rayRowWarnStartPos + offsetRayWarnRow;
+                    //float offsetX = rowPosMov * rayAttackRowLoc;
+                    //rayRowEnemyWarning.transform.position = new Vector3(offsetX, 1, 0);
+
+                    // Toggle to avoid recalculation of new ray lcoation when in the same ray loop
+                    calcNewLoc = false;
+                }
+
+                if (intCurrBeat % spawnBeatDelay == (spawnBeatDelay-2))
+                {
+                    // Change transparency to indicate imminency of ray attack
+                    // (60% equal one turn left before strike)
+                    imgColor.a = 0.7f;
+                    rayRowEnemyWarning.color = imgColor;
+                }
+
+                else if (intCurrBeat % spawnBeatDelay == (spawnBeatDelay-1))
+                {
+                    // Change transparency to indicate imminency of ray attack
+                    // (30% indicates strike will happen in the next turn)
+                    imgColor.a = 0.3f;
+                    rayRowEnemyWarning.color = imgColor;
+                }
+
+                else
+                {
+                    // Set transparent when warning states has not started
+                    imgColor.a = 0f;
+                    rayRowEnemyWarning.color = imgColor;
+                }
+
             }
 
-            else if (intCurrBeat % 2 == 1 & intCurrBeat != 1 & intCurrBeat != intPrevBeat)
+            else if (intCurrBeat % spawnBeatDelay == 0 & intCurrBeat != intPrevBeat)
             {
                 // Previous ray warning out
                 rayRowEnemyWarning.transform.position = rayRowWarnOutPos;
@@ -89,6 +112,9 @@ public class RayEnemyController : MonoBehaviour
                 // Next ray object in
                 Vector3 offsetRayObjRow = new Vector3(rowPosMov * rayAttackRowLoc, 0, 0);
                 rayRowObjEnemy.transform.position = rayRowStartPos + offsetRayObjRow;
+
+                // Calculate location next turn for new strike
+                calcNewLoc = true;
             }
         }
 
