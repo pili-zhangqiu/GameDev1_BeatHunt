@@ -33,6 +33,8 @@ public class RowRayEnemyController : MonoBehaviour
     public  int spawnBeatDelay;
     private bool calcNewLoc = true;
 
+    public AudioSource raySound;
+
 
     void Start()
     {
@@ -81,6 +83,9 @@ public class RowRayEnemyController : MonoBehaviour
 
                 if (intCurrBeat % spawnBeatDelay == (spawnBeatDelay-2))
                 {
+                    // Play warning and ray sound
+                    raySound.Play();
+
                     // Change transparency to indicate imminency of ray attack
                     // (60% equal one turn left before strike)
                     imgColor.a = 0.7f;

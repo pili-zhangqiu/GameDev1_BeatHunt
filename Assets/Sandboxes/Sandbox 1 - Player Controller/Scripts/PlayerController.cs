@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
 	void OnTriggerEnter(Collider collision)
 	{
 		// -------------- Hit by log --------------
-		if (collision.gameObject.name == "BallBouncer" || collision.gameObject.name == "RayRow_Enemy")
+		if (collision.gameObject.name == "BallBouncer(Clone)" || collision.gameObject.name == "RayRow_Enemy")
 		{
 			playerHealth = playerHealth - 1;
 			damageAudio.Play();
