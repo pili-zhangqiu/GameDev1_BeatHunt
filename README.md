@@ -2,7 +2,8 @@
 Assignment for the IGGI Module of Game Development 1, led by Dr Jeremy Gow
 
 Final Game Builds: You can find the final MacOS and Windows builds in the /GameBuild folder.
- 
+
+## Technical Summary
 ### Beat conductor controller
 
 **Main script of interest:** ConductorController.cs
