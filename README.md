@@ -1,6 +1,7 @@
 # BeatHunt: The Game - Technical Summary
 Assignment for the IGGI Module of Game Development 1, led by Dr Jeremy Gow
- 
+
+Final Game Builds: You can find the final MacOS and Windows builds in the /GameBuild folder.
  
 ### Beat conductor controller
 
