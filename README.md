@@ -1,7 +1,16 @@
 # BeatHunt: The Game - Technical Summary
-Assignment for the IGGI Module of Game Development 1, led by Dr Jeremy Gow
- 
- 
+Assignment for the IGGI Module of Game Development 1, led by Dr Jeremy Gow. 
+
+**Developers:** 
+- Dimitris Menexopoulos (DM) - Music and Sound Designer
+- Pilar Zhang Qiu (PZQ) - Programmer and Graphic Designer
+- Sahar Mirhadi (SM) - Scrum Master, User Experience and Gameplay Designer 
+
+**Final Game Builds:** You can find the final MacOS and Windows builds in the /GameBuild folder.
+
+**Youtube Video:** https://www.youtube.com/watch?v=Tf2OZRLliaQ
+
+## Technical Summary
 ### Beat conductor controller
 
 **Main script of interest:** ConductorController.cs
