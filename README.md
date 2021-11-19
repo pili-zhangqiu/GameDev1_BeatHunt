@@ -1,12 +1,12 @@
 # BeatHunt: The Game - Technical Summary
 Assignment for the IGGI Module of Game Development 1, led by Dr Jeremy Gow. 
 
-Developers: 
+**Developers:** 
 - Dimitris Menexopoulos (DM) - Music and Sound Designer
 - Pilar Zhang Qiu (PZQ) - Programmer and Graphic Designer
 - Sahar Mirhadi (SM) - Scrum Master, User Experience and Gameplay Designer 
 
-Final Game Builds: You can find the final MacOS and Windows builds in the /GameBuild folder.
+**Final Game Builds:** You can find the final MacOS and Windows builds in the /GameBuild folder.
 
 ## Technical Summary
 ### Beat conductor controller
